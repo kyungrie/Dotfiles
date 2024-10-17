@@ -1,0 +1,16 @@
+{
+  "custom/media": {
+    "format": "{icon} {}",
+    "return-type": "json",
+    "max-length": 100,
+    "format-icons": {
+      "spotify": " ",
+      "default": " ",
+    },
+    "escape": true,
+    "exec": "$HOME/.config/waybar/scripts/mediaplayer.py 2> /dev/null",
+    "on-click": "playerctl play-pause",
+    "on-scroll-up": "playerctl next",
+    "on-scroll-down": "playerctl previous",
+  },
+}

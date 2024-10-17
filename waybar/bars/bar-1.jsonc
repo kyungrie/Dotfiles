@@ -1,0 +1,129 @@
+{
+  "include": [
+    "~/.config/waybar/modules/custom-cava.jsonc",
+    "~/.config/waybar/modules/custom-wf-recorder.jsonc",
+    "~/.config/waybar/modules/custom-updates.jsonc",
+    "~/.config/waybar/modules/custom-media.jsonc",
+    "~/.config/waybar/modules/custom-logo.jsonc",
+    "~/.config/waybar/modules/custom-notifications.jsonc",
+    "~/.config/waybar/modules/custom-weather.jsonc",
+    "~/.config/waybar/modules/hyprland-language.jsonc",
+    "~/.config/waybar/modules/hyprland-workspaces.jsonc",
+    "~/.config/waybar/modules/clock-1.jsonc",
+    "~/.config/waybar/modules/pulseaudio.jsonc",
+  ],
+  "modules-left": [
+    "hyprland/workspaces",
+    "hyprland/window",
+    "group/hardware",
+  ],
+  "modules-center": [
+    "clock",
+    "tray",
+    "custom/media",
+  ],
+  
+  "modules-right": [
+    "custom/updates", 
+    "custom/colorpicker",
+    "network",
+    "pulseaudio",
+    "backlight",
+    "custom/notifications",
+    "battery",
+    "custom/powermenu"
+  ],
+
+  "network": {
+    "interface": "wlp2s0",
+    "format": "{ifname}",
+    "format-wifi": "({signalStrength}%)   {essid}",
+    "format-ethernet": "{ipaddr}/{cidr} 󰊗",
+    "format-disconnected": "No Internet", //An empty format will hide the module.
+    "tooltip-format": "{ifname} via {gwaddr} 󰊗",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+    "tooltip-format-ethernet": "{ifname} ",
+    "tooltip-format-disconnected": "Disconnected",
+    "max-length": 15
+  },
+
+  "custom/powermenu": {
+    "format": "󰐥",
+    "on-click": "wlogout"
+  },
+
+  "group/hardware": {
+		"orientation": "horizontal",
+		"modules": [
+			"cpu",
+			"memory",
+			"temperature"
+		]
+	},
+
+  "cpu":{
+    "format":" {usage}%",
+  },
+
+  "memory":{
+    "format":" {percentage}%",
+  },
+
+  "temperature":{
+    "format":" {temperatureC}°C",
+    "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+    "critical-threshold": 80,
+    "format-critical": "{temperatureC}°C ",
+    "interval": 2
+  },
+
+  "custom/colorpicker":{
+    "format":"󰈋",
+    "on-click":"hyprpicker -a" ,
+  },
+
+  "backlight":{
+    "format":"󰃠 {percent}%",
+  },
+
+  "hyprland/window":{
+    "max-length": 25,
+  },
+
+  "battery": {
+    "interval": 60,
+    "states": {
+        "warning": 30,
+        "critical": 15
+    },
+    "format": "{icon} {capacity}%",
+    "format-icons": ["", "", "", "", ""],
+    "max-length": 25
+  },
+ 
+  "clock": {
+        "format": "{:%H:%M}  ",
+        "format-alt": "{:%A, %B %d, %Y (%R)}  ",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+                    "mode"          : "year",
+                    "mode-mon-col"  : 3,
+                    "weeks-pos"     : "right",
+                    "on-scroll"     : 1,
+                    "format": {
+                              "months":     "<span color='#ffead3'><b>{}</b></span>",
+                              "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+                              "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                              "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                              "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+                              }
+                    },
+        "actions":  {
+                    "on-click-right": "mode",
+                    "on-scroll-up": "tz_up",
+                    "on-scroll-down": "tz_down",
+                    "on-scroll-up": "shift_up",
+                    "on-scroll-down": "shift_down"
+                    }
+    },
+}
